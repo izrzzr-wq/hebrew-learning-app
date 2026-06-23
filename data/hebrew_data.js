@@ -85,6 +85,48 @@ const HEBREW_DATA = {
 
   // 4. Grammar Paradigms (Tables)
   paradigms: {
+    // Consonants list reference
+    consonantsTable: {
+      title: '히브리어 22개 자음 일람표 (Consonants Reference)',
+      headers: ['자음 (Consonant)', '이름 (Name)', '음역 (Translit)', '음가 (Sound)', '꼬리형 (Final)', '특성 (Features)'],
+      rows: [
+        ['א', '알레프 (Alef)', "'", '묵음', '-', '후음'],
+        ['ב', '베트 (Bet)', 'b / v', 'b (점 있음) / v (점 없음)', '-', 'Begedkephat'],
+        ['ג', '기멜 (Gimel)', 'g', 'g', '-', 'Begedkephat'],
+        ['ד', '달레트 (Dalet)', 'd', 'd', '-', 'Begedkephat'],
+        ['ה', '헤 (He)', 'h', 'h', '-', '후음'],
+        ['ו', '바브 (Vav)', 'v', 'v', '-', '반모음 역할 가능'],
+        ['ז', '자인 (Zayin)', 'z', 'z', '-', '-'],
+        ['ח', '헤트 (Het)', 'ch / ḥ', 'ch (목젖 긁는 소리)', '-', '후음'],
+        ['ט', '테트 (Tet)', 't', 't', '-', '-'],
+        ['י', '요드 (Yod)', 'y', 'y', '-', '반모음 역할 가능'],
+        ['כ', '카프 (Kaf)', 'k / kh', 'k (점 있음) / ch (점 없음)', 'ך', 'Begedkephat, 꼬리형'],
+        ['ל', '라메드 (Lamed)', 'l', 'l', '-', '-'],
+        ['מ', '멤 (Mem)', 'm', 'm', 'ם', '꼬리형'],
+        ['נ', '눈 (Nun)', 'n', 'n', 'ן', '꼬리형'],
+        ['ס', '사메크 (Samekh)', 's', 's', '-', '-'],
+        ['ע', '아인 (Ayin)', '`', '묵음', '-', '후음'],
+        ['פ', '페 (Pe)', 'p / f', 'p (점 있음) / f (점 없음)', 'ף', 'Begedkephat, 꼬리형'],
+        ['צ', '차데 (Tsade)', 'ts', 'ts', 'ץ', '꼬리형'],
+        ['ק', '코프 (Qof)', 'q', 'q', '-', '-'],
+        ['ר', '레쉬 (Resh)', 'r', 'r', '-', '후음적 성격'],
+        ['ש', '신/쉰 (Sin/Shin)', 's / sh', 's (왼쪽 점 שׂ) / sh (오른쪽 점 שׁ)', '-', '-'],
+        ['ת', '타브 (Tav)', 't', 't', '-', 'Begedkephat']
+      ]
+    },
+    // Vowels list reference
+    vowelsTable: {
+      title: '히브리어 모음 체계 (Vowels Reference)',
+      headers: ['모음 계열 (Class)', '장모음 (Long)', '단모음 (Short)', '반모음 (Reduced)'],
+      rows: [
+        ['A-계열 (a)', '카메츠 ָ  (a)', '파타흐 ַ  (a)', '하테프 파타흐 ֲ  (초단 a)'],
+        ['E-계열 (e)', '체레 ֵ  (e)', '세골 ֶ  (e)', '하테프 세골 ֱ  (초단 e)'],
+        ['I-계열 (i)', '히렉 요드 ִי  (장 i)', '히렉 ִ  (i)', '-'],
+        ['O-계열 (o)', '하테프 카메츠 ֳ  (초단 o)', '카메츠 하투프 ָ  (o)', '하테프 카메츠 ֳ  (초단 o)'],
+        ['U-계열 (u)', '슈렉 וּ  (장 u)', '키부츠 ֻ  (u)', '-'],
+        ['쉐바 (Sheva)', '유성 쉐바 ְ  (e)', '무성 쉐바 ְ  (묵음)', '-']
+      ]
+    },
     // Noun endings gender/number
     nouns: {
       title: '명사 변화표 (Noun Endings)',

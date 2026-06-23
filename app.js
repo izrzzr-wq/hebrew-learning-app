@@ -265,8 +265,8 @@ function formatExplanationToHtml(text, weekNum) {
     if (p.startsWith('<h') || p.startsWith('<div')) return p;
     
     // Highlight Hebrew letters/words dynamically in the body text
-    // Regex matches Hebrew alphabet unicode block characters
-    p = p.replace(/([\u0590-\u05FF]+)/g, '<span class="hebrew-word">$1</span>');
+    // Regex matches Hebrew alphabet, vowel points, presentation forms, and dotted circles
+    p = p.replace(/([\u0590-\u05FF\uFB1D-\uFB4F\u25cc\u2019\u201d]+)/g, '<span class="hebrew-word">$1</span>');
     
     return `<p>${p}</p>`;
   }).join('');
@@ -508,6 +508,106 @@ function flipCard(idx) {
   }
 }
 
+// Generate custom quiz pools matching the weekly grammar themes
+function getQuizPoolForWeek(weekNum) {
+  let pool = [];
+  
+  if (weekNum === 1) {
+    // 자음 1부 (1~11번째 자음)
+    pool = HEBREW_DATA.consonants.slice(0, 11).map(c => ({
+      q: c.letter,
+      ans: c.nameKo,
+      hint: `이 자음의 이름은 무엇일까요? (음가: ${c.sound.split(' ')[0]})`
+    }));
+  } 
+  else if (weekNum === 2) {
+    // 모음 전체 + 자음 2부
+    const vowelsPool = HEBREW_DATA.vowels.map(v => ({
+      q: `자음 ב에 붙은 모음 [ ב${v.symbol} ] 의 발음은 무엇일까요?`,
+      ans: v.nameKo,
+      hint: `${v.type} (${v.class})`
+    }));
+    const consonants2Pool = HEBREW_DATA.consonants.slice(11).map(c => ({
+      q: c.letter,
+      ans: c.nameKo,
+      hint: `이 자음의 이름은 무엇일까요? (음가: ${c.sound.split(' ')[0]})`
+    }));
+    pool = [...vowelsPool, ...consonants2Pool];
+  } 
+  else if (weekNum === 3) {
+    // 음절 및 액센트 법칙에 대한 개념 퀴즈
+    pool = [
+      { q: "자음 + 모음 구조의 음절을 무엇이라고 하나요?", ans: "개음절 (열린 음절)", hint: "예: 가, 나, 다" },
+      { q: "자음 + 모음 + 자음 구조의 음절을 무엇이라고 하나요?", ans: "폐음절 (닫힌 음절)", hint: "예: 감, 납, 앞" },
+      { q: "히브리어 자음 중 '목구멍 소리'를 내는 후음(Guttural)이 아닌 자음은?", ans: "ב (베트)", hint: "후음은 א, ה, ח, ע, (ר) 입니다." },
+      { q: "자음 중앙에 찍혀 자음이 중복됨을 나타내는 점의 이름은?", ans: "이중점 (Dagesh Forte)", hint: "자음을 2중으로 발음함을 의미" },
+      { q: "베게드케페트(Begedkephat) 문자 중앙에 찍혀 강한 소리를 나타내는 점은?", ans: "경음점 (Dagesh Lene)", hint: "소리를 딱딱하게 내도록 함" }
+    ];
+  }
+  else if (weekNum === 4) {
+    // 정관사와 접속사 와우
+    pool = [
+      { q: "히브리어 정관사의 기본 형태는 무엇인가요?", ans: "הַ (하 + 다음 자음에 이중점)", hint: "정관사 'the'에 해당" },
+      { q: "히브리어 접속사 '그리고(and)'의 기본 형태는?", ans: "וְ (와우 쉐바)", hint: "접속사 'and'" },
+      { q: "정관사 הַ가 후음(א, ע, ר) 앞에 올 때 일어나는 현상은?", ans: "보상장단 (모음이 카메츠 ָ 로 길어짐)", hint: "후음에는 이중점을 찍지 못하므로 앞의 모음이 길어짐" },
+      { q: "접속사 와우(ו)가 순음(ב, מ, פ)이나 쉐바를 가진 자음 앞에 올 때 변하는 형태는?", ans: "וּ (슈렉 '우')", hint: "발음 편의를 위해 변형됨" }
+    ];
+  }
+  else if (weekNum === 5 || weekNum === 6) {
+    // 명사 성수 어미 및 명사 변화
+    pool = [
+      { q: "히브리어 여성 단수 명사의 가장 대표적인 어미는?", ans: "ָה (-아)", hint: "예: סוּסָה (susah - 암말)" },
+      { q: "히브리어 남성 복수 명사의 가장 대표적인 어미는?", ans: "ִים (-임)", hint: "예: סוּסִים (susim - 수말들)" },
+      { q: "히브리어 여성 복수 명사의 가장 대표적인 어미는?", ans: "וֹת (-오트)", hint: "예: סוּסוֹת (susot - 암말들)" },
+      { q: "히브리어 쌍수(Dual, 눈/귀/손/이틀 등) 명사의 대표적인 어미는?", ans: "ַיִם (-아임)", hint: "예: יוֹמַיִם (yomayim - 이틀)" },
+      { q: "히브리어 명사가 소유격('~의')을 나타내기 위해 단축되는 형태의 명사를 무엇이라 하나요?", ans: "연계형 (Construct State)", hint: "수식을 받는 명사의 형태 변화" }
+    ];
+  }
+  else if (weekNum === 7) {
+    // 인칭대명사 접미사
+    pool = [
+      { q: "명사 뒤에 붙는 인칭대명사 접미사 중 '나의 (1인칭 단수)'를 뜻하는 형태는?", ans: "ִי (i)", hint: "예: סוּסִי (나의 말)" },
+      { q: "명사 뒤에 붙는 인칭대명사 접미사 중 '그의 (3인칭 남성 단수)'를 뜻하는 형태는?", ans: "וֹ (o)", hint: "예: סוּסוֹ (그의 말)" },
+      { q: "명사 뒤에 붙는 인칭대명사 접미사 중 '그녀의 (3인칭 여성 단수)'를 뜻하는 형태는?", ans: "ָהּ (ah)", hint: "예: סוּסָהּ (그녀의 말)" },
+      { q: "명사 뒤에 붙는 인칭대명사 접미사 중 '너의 (2인칭 남성 단수)'를 뜻하는 형태는?", ans: "ְךָ (ekha)", hint: "예: סוּסְךָ (너의 말)" },
+      { q: "명사 뒤에 붙는 인칭대명사 접미사 중 '우리의 (1인칭 복수)'를 뜻하는 형태는?", ans: "ֵנוּ (enu)", hint: "예: סוּסֵנוּ (우리의 말)" }
+    ];
+  }
+  else if (weekNum === 8) {
+    // 지시대명사 및 동사 7형
+    pool = [
+      { q: "히브리어 동사 7대 형태 중 '단순 능동 (Simple Active)'을 뜻하는 형태는?", ans: "Qal (칼)", hint: "예: 카탈 (그가 죽였다)" },
+      { q: "히브리어 동사 7대 형태 중 '단순 수동 (Simple Passive)'을 뜻하는 형태는?", ans: "Niphal (니팔)", hint: "예: 니크탈 (그가 죽임당했다)" },
+      { q: "히브리어 동사 7대 형태 중 '강조 능동 (Intensive Active)'을 뜻하는 형태는?", ans: "Piel (피엘)", hint: "중앙 자음에 이중점이 있는 형태" },
+      { q: "히브리어 동사 7대 형태 중 '강조 수동 (Intensive Passive)'을 뜻하는 형태는?", ans: "Pual (푸알)", hint: "자음 중앙 이중점과 u-a 모음 결합" },
+      { q: "히브리어 동사 7대 형태 중 '사역 능동 (Causative Active)'을 뜻하는 형태는?", ans: "Hiphil (히필)", hint: "접두사 헤(ה)와 세골/히렉 모음 결합" },
+      { q: "이것(This, 남성 단수)을 뜻하는 히브리어 지시대명사는?", ans: "זֶה (zeh)", hint: "This (Masculine Singular)" }
+    ];
+  }
+  else if (weekNum >= 9 && weekNum <= 13) {
+    // 동사 완료/미완료
+    pool = [
+      { q: "히브리어 칼 완료(Qal Perfect) 3인칭 남성 단수의 기본 형태는?", ans: "קָטַל (qatal)", hint: "그가 죽였다" },
+      { q: "완료(Perfect) 시제가 주로 나타내는 의미는?", ans: "동작의 완료 (과거/현재완료 등)", hint: "이미 완료된 동작" },
+      { q: "미완료(Imperfect) 시제가 주로 나타내는 의미는?", ans: "동작의 미완료 (미래/지속/반복 등)", hint: "아직 완료되지 않은 동작" },
+      { q: "파생동사 중 '사역 능동' 형태로 '~하게 만들다'의 의미를 가진 것은?", ans: "Hiphil (히필)", hint: "Causative Active" },
+      { q: "동사 완료형 뒤에 붙어 1인칭 단수 주어('내가 ~했다')를 만드는 어미는?", ans: "תִּי (ti)", hint: "예: 카탈티 (내가 죽였다)" },
+      { q: "동사 완료형 뒤에 붙어 3인칭 복수 주어('그들이 ~했다')를 만드는 어미는?", ans: "וּ (u)", hint: "예: 카틀루 (그들이 죽였다)" }
+    ];
+  }
+  else {
+    // 3부 약동사
+    pool = [
+      { q: "히브리어에서 자음 중 목구멍 소리가 나는 후음(Guttural)의 중요한 특징은?", ans: "이중점을 찍지 못하고, 주로 a 계열 모음을 선호함", hint: "א, ה, ח, ע, (ר)" },
+      { q: "3개 어근 자음 중 일부가 탈락하거나 변형되는 동사를 무엇이라고 하나요?", ans: "약동사 (Weak Verbs)", hint: "후음이나 요드, 와우, 눈 등을 어근으로 가진 동사" },
+      { q: "어근의 첫 번째 자음에 '눈(נ)'이 와서 미완료 등에서 눈이 탈락하는 약동사는?", ans: "페-눈 동사 (I-Nun)", hint: "예: 나타쉬 -> 이토쉬" },
+      { q: "어근의 두 번째 자음에 와우(ו)나 요드(י)가 와서 모음처럼 소리나고 탈락하기 쉬운 동사는?", ans: "아인-와우/요드 동사 (Hollow Verbs)", hint: "가운데가 비어있는 동사" }
+    ];
+  }
+  
+  return pool;
+}
+
 // Game 2: Pronunciation & Vowel Multiple Choice Quiz
 function startPronunciationQuiz() {
   showGameArena('pronunciation-quiz-arena');
@@ -515,25 +615,20 @@ function startPronunciationQuiz() {
   document.getElementById('game-header-desc').innerText = "글자를 보고 가장 정확한 이름과 음가를 찾아보세요.";
   
   // Get pool of questions based on active week
-  let pool = [];
-  if (activeWeek === 2) {
-    // Vowels pool
-    pool = HEBREW_DATA.vowels.map(v => ({ q: v.symbol, ans: v.nameKo, hint: `${v.type} (${v.class})` }));
-  } else {
-    // Consonants pool
-    pool = HEBREW_DATA.consonants.map(c => ({ q: c.letter, ans: c.nameKo, hint: `이 자음의 이름은 무엇일까요? (음가: ${c.sound})` }));
-  }
+  let pool = getQuizPoolForWeek(activeWeek);
   
-  // Shuffle and pick 10 questions
+  // Shuffle and pick 10 questions (or less if pool is small)
   pool.sort(() => Math.random() - 0.5);
-  const questions = pool.slice(0, 10);
+  const questions = pool.slice(0, Math.min(10, pool.length));
   
   quizGameInstance = {
     questions: questions,
     currentIndex: 0,
     score: 0,
     total: questions.length,
-    answerPool: HEBREW_DATA.consonants.map(c => c.nameKo).concat(HEBREW_DATA.vowels.map(v => v.nameKo))
+    answerPool: HEBREW_DATA.consonants.map(c => c.nameKo)
+      .concat(HEBREW_DATA.vowels.map(v => v.nameKo))
+      .concat(["개음절 (열린 음절)", "폐음절 (닫힌 음절)", "경음점 (Dagesh Lene)", "이중점 (Dagesh Forte)", "보상장단 (모음이 카메츠 ָ 로 길어짐)", "연계형 (Construct State)"])
   };
   
   loadQuizQuestion();
@@ -561,12 +656,51 @@ function loadQuizQuestion() {
   
   // Generate options (1 correct + 3 incorrect)
   let choices = [question.ans];
-  let wrongAnswers = quizGameInstance.answerPool.filter(ans => ans !== question.ans);
+  
+  // Categorized answer pools for realistic distractors
+  const consonantAnswers = HEBREW_DATA.consonants.map(c => c.nameKo);
+  const vowelAnswers = HEBREW_DATA.vowels.map(v => v.nameKo);
+  const conceptAnswers = [
+    "개음절 (열린 음절)", "폐음절 (닫힌 음절)", "경음점 (Dagesh Lene)", "이중점 (Dagesh Forte)",
+    "보상장단 (모음이 카메츠 ָ 로 길어짐)", "연계형 (Construct State)", "Qal (칼)", "Niphal (니팔)",
+    "Piel (피엘)", "Pual (푸알)", "Hiphil (히필)", "Hophal (호팔)", "Hithpael (히트파엘)",
+    "정관사의 기본형", "접속사의 기본형", "유성/무성 쉐바", "후음 (Guttural)", "약동사 (Weak Verbs)"
+  ];
+  const pronounAnswers = [
+    "ִי (i)", "ְךָ (ekha)", "ֵךְ (ekh)", "וֹ (o)", "ָהּ (ah)", "ֵנוּ (enu)", "ְכֶם (ekhem)", "ְכֶﻦ (ekhen)", "ָם (am)", "ָן (an)"
+  ];
+  
+  let currentPool = quizGameInstance.answerPool;
+  if (consonantAnswers.includes(question.ans)) {
+    currentPool = consonantAnswers;
+  } else if (vowelAnswers.includes(question.ans)) {
+    currentPool = vowelAnswers;
+  } else if (pronounAnswers.includes(question.ans)) {
+    currentPool = pronounAnswers;
+  } else if (conceptAnswers.includes(question.ans) || conceptAnswers.some(c => question.ans.includes(c))) {
+    currentPool = conceptAnswers;
+  }
+  
+  let wrongAnswers = currentPool.filter(ans => ans !== question.ans);
   wrongAnswers.sort(() => Math.random() - 0.5);
   
-  choices.push(wrongAnswers[0]);
-  choices.push(wrongAnswers[1]);
-  choices.push(wrongAnswers[2]);
+  let selectedWrongs = [];
+  for (let i = 0; i < wrongAnswers.length; i++) {
+    if (selectedWrongs.length >= 3) break;
+    if (!selectedWrongs.includes(wrongAnswers[i])) {
+      selectedWrongs.push(wrongAnswers[i]);
+    }
+  }
+  
+  if (selectedWrongs.length < 3) {
+    let generalWrongs = quizGameInstance.answerPool.filter(ans => ans !== question.ans && !selectedWrongs.includes(ans));
+    generalWrongs.sort(() => Math.random() - 0.5);
+    while (selectedWrongs.length < 3 && generalWrongs.length > 0) {
+      selectedWrongs.push(generalWrongs.shift());
+    }
+  }
+  
+  selectedWrongs.forEach(w => choices.push(w));
   
   // Shuffle choices
   choices.sort(() => Math.random() - 0.5);
