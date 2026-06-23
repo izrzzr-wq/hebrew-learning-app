@@ -30,25 +30,25 @@ large_block_replacements = [
     # Ch2: Ancient Hebrew Alphabet Chart (severely corrupted ancient letter diagram)
     (
         "Anclent Hebr.\u201c Alphabet Chart \nAnc\u2018nt \n}\u2018obr.\u2019\u2018 \nPlc\u2018ur'\u2018... Pictur. oe\u2018C\u2743ption \u2019\u2018Ant\uff0c. of Lett.\uff0c \n\ufffdt\u2018.r \n\uff0c-\u201c\u2018 \uff0c * @\u2026 \u2026 \ub0b4\u7e3d \ube7c\ucc0c \u2026 * * * \ube7c \ube7c \ube7c \ube68 \ube7c \u201d \ube7c \ube7c \ube6c-\u2018M \ucc44\u03b9x k \ube7c\u5c0a \n\u2019 ty 0.\uff0c\uff0c\uff0c\uff0c0<1 \u201c\u2019@\uae68. pO:woe.\uff0c tea*r A \nt!I tent noor-plan famitv. house. in \n\u2018 \u201900< \uff0cathe\u03ba w\u2018\u2018\u2018\uff0c carr y \n'.m doof \"\"\"\"' \"\u3001\uff0c\u3001t\uff0c hant \uff0c en ler 0 \n4ft mdn with arm.s nIIlsed br\ufffdalh\uff0c look\uff0c rrYe.!\u201c \nY \u2018.ent peoti \nmattock (\uc774\uc544\uc608h l \nID ten l wall \no \uc5b4ske\u2018.dd \u2018eclle. hoot U \nlood\u2018 c\u201c-\u2019oe\ufffdpon\uff0cnour\uc368\u3001 z \n0<Jt\u2018''''' \uff0c \uc5d0\\Ii<k-\uff0c ha\u2018\u2019 \uc5d0 \nSUTOI.Jnd\uff0c conuin\uff0c ml\ud53c 6\u2019 \n10 \uff0c.... h.and and arm \u2019\u2018ri<\uff0c \u2018Iv\u3002\u2018\u2018 \u2018iIOf'\"5hip \n11 \\!9 \ufffd\u3001 patm o( Mnd be-nd\u2018 \uc774>e\u2019\u2018\uff0c allow\uff0c lame \n\u2019 J \"'\"\uc774.. \".\u201claft le ach. yok.eo\uff0c lowaJd. bind L \n1] \u201c \u2018a\u2018.\" chao\u201c mi\ud618ty. bI\uc544>d M \ncontlnue. \u2019\u2018e\u2018r\uff0c ton N \nIrab. naloe\uff0c pnxect \nwatch\uff0c know. \uc57d\uff0c.do o \n\ubc84\u201c\u3002 sca\u201c.er \uff0c edfe P \n1\u2018 \u3001 s\u03b1\"ou\u2018 '\" 1 seed \n15 \u201c110m \n\u2019\u2018 \u3008\ub9ac..,\u2026 \n17 \u3002\uc57cn mouth \n\" \u3002\u201c do\u201c\u2018naUon and p.iI\ufffdh \u2018ralt. joume\u2018 h\u03b9\u201c \n19 \u2018..\uff0c at th(o hof'tzon conde1lse. clrcle. \u2018\u2019m\ufffd Q \n20 \ufffd \u2018\"\". d 1.. \u201c \uff0c lop. besinn\u2019\"1 \n\u3002\n\" [.h) K \n8 \uadf8 \nG \no \u300c\nE (eh ) \u3014\nU [od\u2018l \nz \nCH\" n \nTH \u3002\n\uff0c (\"\" h) \n\uff0c\uff0c:;\uff0c \n\uc789 \nM C\uff0c\u3002\nN l \uff0c l \nx \u3002\nO[ \uc5b4\uff0c) p \n\ud788\uff0c!) \nTS \u03b3\uff0c l; \nQ\u2019 P \n\u300c\n\u3002\n\u2018Jb' \u03b9 a| : ::\u2019 \u2018 - \nft!I 8aT bot \n\u201c G.\u03bc \ub9f9m :;\u201d\u201d \uff0c. \n\ub2c8\"'\u00d8\" DaL daJ \uc591 \u201d\u2019 \nb-\"t E\u00c0 etH1h :':: \uff0c\ucc0c\ufffd\uff0c to-.w \nyy Uu \uc5981-0011\uc5ed\uc5bb \u3010\n\u3001-z-N an t1S; \u201c\u201d \u2019\u2018 \u2018ZD HaS Cha1S \uc559?\u2019\u2018 -\uff0c-.. Oa\u00f3 \ubaa86\u3001 :\uc5bc ____ I'.l........ I\u3002 eed \ufffd \ufffd.. -..... \n\u2019\u201d\u2019 \u2018\uff0c.\" \u2022\u2022 \"\u3010\".\uff0c\u2019\uff0c.\u201d \"\uff0c\uff0c(Pt\uff0cl1.I.\"\u3002\ube7c m m \u2026\u2026 \ub54c \u2026\u201d \ube7c J\u201c L& \u03b9\uff0c\"\u2019\uff0c -. \u2019\u2018... \u2018 \n\u3001\u3001 NaN nan _\uff0c.. __ \n\u3001\u2018 X\u00f0N xan \n\u3001<\uc5de ON on =\uff0c\u2018:\u2026 \u2019\u2018\u201d \nb-'- PA P\u00f0h ::.;..... \u2019 \u2018\u2019 'Q'\"0<...0\\ s.aO tsad ::...:::! \u2018 \u2019\u201d \n-..... Qa\uff0cP q\u03b2p\nu\uff0c('I\"' J rash",
-        "\n\n*(이곳은 고대 페니키아 문자부터 히브리어, 그리스어, 라틴어/영어 문자까지의 알파벳 모양 변천사를 보여주는 도표 자리입니다. 이미지 및 텍스트 손상으로 인하여 생략하며, 히브리어 알파벳의 형태는 앱의 학습 파트를 참고해주시기 바랍니다.)*\n\n"
+        "\n*(이곳은 고대 문자 변천사 도표가 있던 자리입니다. 이미지 손상으로 인하여 생략하며, 히브리어 알파벳의 형태는 앱의 학습 파트를 참고해 주세요.)*\n"
     ),
 
     # Ch3: Dotted circles/vowel diagram corrupted block (Page 3/4 area in ch3)
     (
         "(자음장 모음)  \u25cc \u25cc \u25cc  75  ### Page 3  \u2019\u25cc \u201d\u25cc....  \uc5b4|  \u25cc \u25cc \u25cc.......  \u3014\u25cc \u3014\u25cc........  01 \u25cc \u2019\u25cc..  \uc624 \u25cc \u25cc \u25cc 1\u25cc \u3014\u25cc T T:  o  \u25cc 1\u25cc \u00ef\"\"..  \uc631 ly\u3014o \u03c4l\ufffd\uad90 \ub20c\uac1b\ubab9\ufffd!?-l\u03b9\uac1f \u05d0d\ud638\ub97c\ub18dt?\ub20clo \ufffd1fl\ufffd\uc53b E{\uadfcL \uacf5\uc751{\ufffd \uacfcI\uac19 {E\n\ub984\ubb49d t\u00f5\ufffdl\u3014L lo.\u03c4l\ufffd{\ufffd \ub20c\uacf5\ud54d{\u03b9 \ub97c\ub18dt?\u201d\u201d t\u00f5\u201c4\uaebc -h\u201c-r \uadf9llo\u05d0tl\u3002 \ubb3cr",
-        "\n\n*(이곳은 자음과 모음의 결합 원리를 보여주는 모음 도표 기호들이 있던 자리입니다. 텍스트 깨짐으로 인하여 생략하며, 상세한 히브리어 모음 체계와 결합 원리는 앱 내의 '문법 요약표'를 참고하시기 바랍니다.)*\n\n"
+        "\n*(이곳은 자음과 모음의 결합 원리를 보여주는 모음 도표 기호들이 있던 자리입니다. 상세한 히브리어 모음 체계와 결합 원리는 앱 내의 '문법 요약표'를 참고하시기 바랍니다.)*\n"
     ),
 
     # Ch3: Long corrupted section at the end of ch3
     (
         "(\u05df)C)\ub18d : N\ufffd (\u05df)S)\ufffd : Q\ufffd\n(\u05df)c)\u00f5 : N \ufffd (9S)\ucd94 : Q\ufffd..\n(d\ufffd\uc598NN j (g\uc598..\n(\ufffdS) l\ufffdY : Q......\n(\ufffdSH\ufffdY : Q...\n(o{\u03b9\ub8f5 H\uc624 \ubdcd \uc6d4 \ufffdr \ufffd\u03c4fl\ufffdt:s: \ub3d5\ubc1f{ft \uad7dS I\u00f2l\u03b9\ud45c F\u03b4\ubb49 t\u00f5\u3002 \ub984m\n\uc751 \ud798 \uad05 l\u3002\uacf1{\ub7bfo \u201c\u201d llo\u00deL \uad90l \u03b9\ud45c \uad7dl-o\ufffd-\uad09l\uc624.\ud765\ud315\ufffd!?-\u2018 l\u03b9\uac1f \ub989\ub97c\ubb49E\uc6a9\uaf45 l\u3002\nEl\ufffd{\u03b9 \ub989(\uad4e\ub959) \uc568 io(E\ufffd\ubc30Y) Q kllolt;!{o \ufffd\u03bacl\u3002\ud15cmr \ufffd\uac15l\ufffdm \uc6b4 \ub871\ub9d5{\u3002 \ub0a8\n(\u05df)W) \uad6c : \ufffd\ufffd (9W) \u00f3 :\n\ufffd\ufffd.1fk\ufffd l\u00df \uc62c \uacf5\ucd55l*lw \ud48d?\u201c\u201d L-lY lY \u30140 llon.po \uacf5\u300f \uc751 \u4e03b i\ud6c4l\u03b9\ud45c l\u3002\uce84 \uac1fF\u03b4",
-        "\n\n*(이곳은 히브리어 모음 결합에 따른 음가 변화를 표시하는 도표 자리입니다. 텍스트 손상으로 생략하며, 자음과 모음의 상세 결합 원리는 앱 내 '문법 요약표'에 깔끔하게 정리되어 있습니다.)*\n\n"
+        "\n*(이곳은 히브리어 모음 결합에 따른 음가 변화를 표시하는 도표 자리입니다. 자음과 모음의 상세 결합 원리는 앱 내 '문법 요약표'에 정리되어 있습니다.)*\n"
     ),
 
     # Ch6: Verb Paradigm (severely corrupted table)
     (
         "(\ufffdYFo)\ub97c \u03b6k (\ufffdy\u00fe )\uac15t \ufffd\n\ub2c8l /\ub2c8E\ub2c8. 1:0\n\ub2c8\u2018\u3009\u2018 (\ubc14\ub2c8l)\uc554\ufffdy:\n\ub2c8\ub514/\ub2c8\ufffd \ub2c8 \ub2c8\ufffd\ufffd (\ubc14\ub0b4)\ufffd\ufffdy:\n(\ufffdy\u00fe )\ud6c8l \u3002\n\u2022 \ufffdY\uc6c0HlI YIY.\n(\u00c1d\ub300) ({\ufffdFo )\ub984r (dl{\uc2a4) \ud2f0r\n\ub2c8l /\ub2c8 E\ub2c8. \ub2c8\ufffd \ufffd\n(\u00c1d\ub300) ({\ufffd\ubaa4)\ub989r (dl{)r.. 4\n\ub2c8\uba70/ \ub2c8\uad49 \ub2c8 \ub2c8\ufffd \ufffd",
-        "\n\n*(이곳은 히브리어 동사 인칭 변화 패러다임(완료/미완료) 표가 있던 자리입니다. 상세 동사 변화표는 앱의 '문법 요약표'를 참고하시기 바랍니다.)*\n\n"
+        "\n*(이곳은 히브리어 동사 인칭 변화 패러다임 표가 있던 자리입니다. 상세 동사 변화표는 앱의 '문법 요약표'를 참고하시기 바랍니다.)*\n"
     ),
 ]
 
@@ -62,6 +62,7 @@ replacements = [
     ("알레프(\ufffd)", "알레프(א)"),
     ("알레프은", "알레프는"),
     ("알레프을", "알레프를"),
+    ("베트(b.et定位， \ufffd)", "베트(Bet, ב)"),
     ("베트(b.et， \ufffd)", "베트(Bet, ב)"),
     ("베트(b.et, \ufffd)", "베트(Bet, ב)"),
     ("베트 (bet)라고", "베트(Bet, ב)라고"),
@@ -668,6 +669,51 @@ spacing_patterns = [
     (r'\s+!', '!'),
 ]
 
+def merge_broken_lines(text):
+    lines = text.split('\n')
+    merged_lines = []
+    
+    for i, line in enumerate(lines):
+        line_str = line.strip()
+        if not line_str:
+            merged_lines.append("")
+            continue
+            
+        is_special = (
+            line_str.startswith('#') or 
+            line_str.startswith('•') or 
+            line_str.startswith('-') or 
+            line_str.startswith('*') or 
+            line_str.startswith('※') or
+            re.match(r'^\d+\.', line_str) or  # 1. 2. 3.
+            re.match(r'^\(\d+\)', line_str) or # (1) (2)
+            re.match(r'^[①-⑩]', line_str) or  # ① ②
+            re.match(r'^@[가-힣]', line_str) or # @경음점
+            "*(이곳은" in line_str or
+            "소릿값" in line_str or "한글표기" in line_str or
+            "|" in line_str or
+            (i > 0 and lines[i-1].strip().startswith('•'))
+        )
+        
+        if is_special:
+            merged_lines.append("\n" + line_str + "\n")
+        else:
+            if merged_lines and not merged_lines[-1].endswith('\n') and merged_lines[-1] != "":
+                prev_line = merged_lines[-1]
+                josa_pattern = r'^(이|가|을|를|은|는|에|의|로|으로|와|과|도|만|니다|합니다|했습니다|였다|이었다|이고|이며|했다|하는|은것|는것|이고|이다|라고|고|하며)'
+                if re.match(r'[가-힣]$', prev_line) and re.match(josa_pattern, line_str):
+                    merged_lines[-1] = prev_line + line_str
+                else:
+                    merged_lines[-1] = prev_line + " " + line_str
+            else:
+                merged_lines.append(line_str)
+                
+    result = "\n".join(merged_lines)
+    result = re.sub(r'\n{3,}', '\n\n', result)
+    result = re.sub(r' \n', '\n', result)
+    result = re.sub(r'\n ', '\n', result)
+    return result.strip()
+
 # Apply corrections to each chapter
 print("Applying cleaning dictionary and regex to chapters text...")
 for ch_key, text in chapters_data.items():
@@ -679,18 +725,49 @@ for ch_key, text in chapters_data.items():
     for target, replacement in replacements:
         text = text.replace(target, replacement)
         
-    # 3. Apply regex spacing patterns
+    # 3. Clean footnotes and references (User request: 각주/도표 정보 등은 제거하고 부드럽게 이어지게)
+    # Remove reference brackets like [Rev. Ed.; Oakland, Calif.: EKS Publishing, 2008], 3에 기초한 것임]
+    text = re.sub(r'\[[^\]J]*(?:Rev|Ed|Publishing|EKS|Ed\.|2008|\d{4})[^\]J]*[\]J]', '', text, flags=re.IGNORECASE)
+    text = re.sub(r'\([^)]*(?:도표|Ethelyn|Simon|Joseph|Teach|Hebrew|Publishing)[^)]*\)', '', text, flags=re.IGNORECASE)
+    
+    # Remove specific footnote explanations
+    text = re.sub(r'\(이하\s*의\s*도표는[^)]+\)', '', text)
+    text = re.sub(r'\(이하\s*도표는[^)]+\)', '', text)
+    text = re.sub(r'\(한국어에는\s*아직\s*정확히[^)]+\)', '', text)
+    text = re.sub(r'\(실제로\s*발음할\s*때에는[^)]+\)', '', text)
+    text = re.sub(r'\(원래는\s*히브리어의[^)]+\)', '', text)
+    text = re.sub(r'\(음성학을\s*전공한[^)]+\)', '', text)
+    text = re.sub(r'\(이에\s*반하여\s*영어는[^)]+\)', '', text)
+    
+    # Remove singleton page number lines (e.g. \n23\n, \n35\n)
+    text = re.sub(r'\n+\d+\n+', '\n\n', text)
+    
+    # 4. Connect sentences that break across page headers
+    text = re.sub(r'([가-힣])\s*\n*### Page \d+\n+\s*([가-힣])', r'\1 \2', text)
+    
+    # Remove remaining singleton Page headers to keep flow continuous
+    text = re.sub(r'### Page \d+', '', text)
+
+    # 5. Apply regex spacing patterns
     for pattern, replacement in spacing_patterns:
         text = re.sub(pattern, replacement, text)
         
-    # 4. Clean up any remaining U+FFFD characters to prevent rendering glitches
+    # 6. Clean up any remaining U+FFFD characters to prevent rendering glitches
     text = text.replace("\ufffd", "")
     
-    # 5. Fix double spaces or clean trailing line spaces
+    # 7. Merge broken lines to keep continuous text flow
+    text = merge_broken_lines(text)
+    
+    # 8. Clean up specific OCR orphan parenthesis typos
+    text = text.replace("있기는합니다. )，", "있기는합니다.")
+    text = text.replace("있기는합니다. )", "있기는합니다.")
+    
+    # 9. Final formatting: Clean double spaces and empty consecutive lines
     text = re.sub(r' +', ' ', text)
     text = re.sub(r' \n', '\n', text)
+    text = re.sub(r'\n{3,}', '\n\n', text)
     
-    chapters_data[ch_key] = text
+    chapters_data[ch_key] = text.strip()
 
 # Write the cleaned data back to chapters_text.js
 with open(filepath, "w", encoding="utf-8") as f:
