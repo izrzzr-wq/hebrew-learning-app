@@ -238,8 +238,38 @@ function openStudyWeek(weekNum) {
   }
   
   // Load cleaned explanation text
-  const chKey = `ch${weekNum}`;
-  let rawText = CHAPTERS_TEXT[chKey] || "설명 텍스트를 불러오는 중입니다...";
+  const weekToChapterMap = {
+    1: ["ch1", "ch2"],
+    2: ["ch3"],
+    3: ["ch4", "ch5"],
+    4: ["ch6", "ch7"],
+    5: ["ch8"],
+    6: ["ch8"],
+    7: ["ch9"],
+    8: ["ch10"],
+    9: ["ch11"],
+    10: ["ch11"],
+    11: ["ch11"],
+    12: ["ch11"],
+    13: ["ch11"],
+    14: ["ch12", "ch13"],
+    15: ["ch14", "ch15"],
+    16: ["ch15"],
+    17: ["ch15"],
+    18: ["ch15"],
+    19: ["ch15"],
+    20: ["ch15"]
+  };
+  
+  const chKeys = weekToChapterMap[weekNum] || [];
+  let rawText = "";
+  if (chKeys.length > 0) {
+    rawText = chKeys.map(key => CHAPTERS_TEXT[key] || "").filter(t => t !== "").join("\n\n");
+  }
+  
+  if (!rawText) {
+    rawText = "설명 텍스트를 불러오는 중입니다...";
+  }
   
   // Format the text into HTML
   let formattedHtml = formatExplanationToHtml(rawText, weekNum);
