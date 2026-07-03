@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>300일 히브리어 뼈대 - 대화형 학습 어플리케이션</title>
+  <style>
+/* Import Premium Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+/* CSS Variables for Clean Design System */
+:root {
+  --bg-primary: #080A16;
+  --bg-secondary: #0F1227;
+  --bg-card: rgba(20, 24, 53, 0.6);
+  --border-card: rgba(255, 255, 255, 0.08);
+  --border-glow: rgba(124, 58, 237, 0.3);
+  
+  --color-primary: #7C3AED;      /* Vibrant Purple */
+  --color-primary-light: #9F67FF;
+  --color-secondary: #06B6D4;    /* Sleek Cyan */
+  --color-success: #10B981;      /* Emerald Green */
+  --color-danger: #EF4444;       /* Rose Red */
+  --color-warning: #F59E0B;      /* Amber Yellow */
+  
+  --text-primary: #F3F4F6;       /* Warm Gray */
+  --text-secondary: #9CA3AF;     /* Muted Gray */
+  --text-muted: #6B7280;
+  
+  --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-hebrew: 'Cardo', 'Times New Roman', serif;
+  
+  --shadow-premium: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+  --shadow-glow: 0 0 20px rgba(124, 58, 237, 0.2);
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-primary);
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(6, 118, 212, 0.08) 0%, transparent 40%);
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  min-height: 100vh;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Typography Customizations */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #FFFFFF;
+}
+
+/* Layout Wrapper */
+.app-container {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+/* Glass Sidebar Navigation */
+.sidebar {
+  width: 280px;
+  background-color: var(--bg-secondary);
+  border-right: 1px solid var(--border-card);
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: white;
+  box-shadow: var(--shadow-glow);
+}
+
+.logo-text {
+  font-size: 1.15rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #FFFFFF, #E2E8F0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.logo-subtitle {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 0.2rem;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nav-item {
+  width: 100%;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: var(--transition-smooth);
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+  color: var(--text-primary);
+}
+
+.nav-link.active {
+  background-color: rgba(124, 58, 237, 0.15);
+  border-color: rgba(124, 58, 237, 0.2);
+  color: white;
+  box-shadow: inset 0 0 10px rgba(124, 58, 237, 0.05);
+}
+
+.nav-link svg {
+  width: 20px;
+  height: 20px;
+  transition: var(--transition-smooth);
+}
+
+.nav-link.active svg {
+  color: var(--color-primary-light);
+}
+
+/* User Progress Overview in Sidebar */
+.sidebar-progress {
+  margin-top: auto;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-card);
+  border-radius: 16px;
+  padding: 1.25rem;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.progress-bar-container {
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 0.75rem;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+  border-radius: 3px;
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.progress-status-text {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Main Content Area */
+.main-content {
+  flex-grow: 1;
+  padding: 3rem;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.content-header {
+  margin-bottom: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-title {
+  font-size: 2rem;
+  background: linear-gradient(135deg, #FFFFFF 0%, #CBD5E1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.header-desc {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-top: 0.35rem;
+}
+
+/* Dashboard Curriculum Weeks */
+.weeks-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.week-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 20px;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  transition: var(--transition-smooth);
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.week-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--text-muted);
+  transition: var(--transition-smooth);
+}
+
+.week-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--border-glow);
+  box-shadow: var(--shadow-premium), var(--shadow-glow);
+}
+
+.week-card.completed::before {
+  background: var(--color-success);
+}
+
+.week-card.in-progress::before {
+  background: var(--color-primary);
+}
+
+.week-card:hover::before {
+  background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary));
+}
+
+.week-number-badge {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-card);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.week-number-badge .lbl {
+  font-size: 0.65rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.week-number-badge .num {
+  font-size: 1.25rem;
+  color: white;
+  line-height: 1;
+}
+
+.week-details {
+  flex-grow: 1;
+}
+
+.week-title {
+  font-size: 1.15rem;
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.week-meta {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.week-goal {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.week-action-btn {
+  padding: 0.65rem 1.25rem;
+  border-radius: 10px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.week-card:hover .week-action-btn {
+  background-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+.week-status-badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.week-status-badge.status-completed {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: var(--color-success);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.week-status-badge.status-inprogress {
+  background-color: rgba(124, 58, 237, 0.15);
+  color: var(--color-primary-light);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+}
+
+/* Study / Explanation View */
+.study-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+}
+
+.explanation-panel {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 24px;
+  padding: 2.5rem;
+  backdrop-filter: blur(12px);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.explanation-text {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+}
+
+.explanation-text h2 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: white;
+  border-left: 4px solid var(--color-primary);
+  padding-left: 0.75rem;
+}
+
+.explanation-text h3 {
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-secondary);
+}
+
+.explanation-text p {
+  margin-bottom: 1.25rem;
+  text-align: justify;
+}
+
+/* Premium Styling for Hebrew Text Blocks */
+.hebrew-word {
+  font-family: var(--font-hebrew);
+  font-size: 1.85rem;
+  direction: rtl;
+  display: inline-block;
+  color: var(--color-secondary);
+  font-weight: 400;
+  vertical-align: middle;
+  padding: 0 0.25rem;
+  line-height: 1;
+}
+
+.hebrew-block {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-card);
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 1.5rem 0;
+}
+
+.hebrew-block .large-hebrew {
+  font-family: var(--font-hebrew);
+  font-size: 4rem;
+  direction: rtl;
+  margin-bottom: 0.75rem;
+  line-height: 1.1;
+  color: white;
+}
+
+/* Side Action Panel in Study Mode */
+.study-side-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.side-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 20px;
+  padding: 1.5rem;
+  backdrop-filter: blur(12px);
+}
+
+.side-card-title {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.side-card-btn {
+  width: 100%;
+  padding: 0.85rem;
+  border-radius: 12px;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #6366F1 100%);
+  color: white;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(124, 58, 237, 0.4);
+}
+
+.btn-success {
+  background-color: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: var(--color-success);
+}
+
+.btn-success:hover {
+  background-color: var(--color-success);
+  color: white;
+}
+
+/* Game Selection / Mode Interface */
+.game-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.game-modes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.game-mode-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 24px;
+  padding: 2rem;
+  text-align: center;
+  transition: var(--transition-smooth);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.game-mode-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-secondary);
+  box-shadow: var(--shadow-premium), 0 0 20px rgba(6, 182, 212, 0.15);
+}
+
+.game-mode-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background-color: rgba(6, 182, 212, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.game-mode-card:nth-child(2) .game-mode-icon {
+  background-color: rgba(124, 58, 237, 0.1);
+  color: var(--color-primary-light);
+}
+
+.game-mode-title {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.game-mode-desc {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+/* Card Matching Game Arena */
+.game-arena {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 24px;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  backdrop-filter: blur(12px);
+}
+
+.arena-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-card);
+  padding-bottom: 1.25rem;
+}
+
+.stats-group {
+  display: flex;
+  gap: 2rem;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-lbl {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.stat-val {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: white;
+}
+
+/* Flashcard Matching Grid */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.flip-card {
+  aspect-ratio: 4 / 3;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-card);
+}
+
+.flip-card-front {
+  background-color: #121735;
+  color: var(--color-primary-light);
+  font-size: 2.5rem;
+}
+
+.flip-card-back {
+  background-color: var(--bg-secondary);
+  color: white;
+  transform: rotateY(180deg);
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 1rem;
+}
+
+/* Distinct card states for matches */
+.flip-card.matched .flip-card-front,
+.flip-card.matched .flip-card-back {
+  border-color: var(--color-success);
+  background-color: rgba(16, 185, 129, 0.08);
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* Typing / Pronunciation Quiz Layout */
+.quiz-box {
+  max-width: 600px;
+  margin: 2rem auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.quiz-question-card {
+  background-color: rgba(255, 255, 255, 0.01);
+  border: 1px solid var(--border-card);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+}
+
+.quiz-question-hebrew {
+  font-family: var(--font-hebrew);
+  font-size: 5rem;
+  color: white;
+  margin-bottom: 1.5rem;
+  line-height: 1;
+}
+
+.quiz-choices {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.choice-btn {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-card);
+  padding: 1.25rem;
+  border-radius: 16px;
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.choice-btn:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: var(--text-secondary);
+}
+
+.choice-btn.correct {
+  background-color: rgba(16, 185, 129, 0.2) !important;
+  border-color: var(--color-success) !important;
+  color: white;
+}
+
+.choice-btn.incorrect {
+  background-color: rgba(239, 68, 68, 0.2) !important;
+  border-color: var(--color-danger) !important;
+  color: white;
+}
+
+/* Keyboard Input Helper styling */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.typing-input {
+  flex-grow: 1;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-card);
+  border-radius: 12px;
+  padding: 1rem;
+  font-size: 1.1rem;
+  color: white;
+  text-align: center;
+}
+
+.typing-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+/* Reference Tables Tab */
+.reference-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.reference-section-title {
+  font-size: 1.5rem;
+  border-bottom: 2px solid var(--border-card);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.premium-table-wrapper {
+  overflow-x: auto;
+  border-radius: 20px;
+  border: 1px solid var(--border-card);
+  box-shadow: var(--shadow-premium);
+}
+
+.premium-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  background-color: var(--bg-card);
+}
+
+.premium-table th {
+  background-color: #121631;
+  padding: 1.25rem 1.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: white;
+  border-bottom: 1px solid var(--border-card);
+}
+
+.premium-table td {
+  padding: 1.15rem 1.5rem;
+  border-bottom: 1px solid var(--border-card);
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.premium-table tr:last-child td {
+  border-bottom: none;
+}
+
+.premium-table tr:hover td {
+  background-color: rgba(255, 255, 255, 0.01);
+}
+
+/* Responsive media queries */
+@media (max-width: 1024px) {
+  .app-container {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    padding: 1.5rem;
+    border-right: none;
+    border-bottom: 1px solid var(--border-card);
+  }
+  .logo-container {
+    margin-bottom: 1.5rem;
+  }
+  .nav-menu {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+  .sidebar-progress {
+    display: none;
+  }
+  .main-content {
+    padding: 1.5rem;
+    height: auto;
+    overflow-y: visible;
+  }
+  .study-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .quiz-choices {
+    grid-template-columns: 1fr;
+  }
+}
+
+</style>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="logo-container">
+        <div class="logo-icon">ע</div>
+        <div>
+          <h1 class="logo-text">히브리어 뼈대</h1>
+          <div class="logo-subtitle">300일 학습 프로젝트</div>
+        </div>
+      </div>
+      
+      <nav>
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a class="nav-link active" onclick="switchView('dashboard')">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z" />
+              </svg>
+              학습 대시보드
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="nav-study" onclick="switchView('study')">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+              챕터 설명 읽기
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="nav-game" onclick="switchView('game')">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+              </svg>
+              복습 게임 아레나
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="switchView('reference')">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+              </svg>
+              핵심 요약 도표
+            </a>
+          </li>
+        </ul>
+      </nav>
+      
+      <!-- User Learning Progress widget -->
+      <div class="sidebar-progress">
+        <div class="progress-header">
+          <span>전체 진도율</span>
+          <span id="overall-progress-percentage">0%</span>
+        </div>
+        <div class="progress-bar-container">
+          <div class="progress-bar-fill" id="overall-progress-fill"></div>
+        </div>
+        <div class="progress-status-text" id="overall-progress-text">완료한 챕터: 0 / 20</div>
+      </div>
+    </aside>
+    
+    <!-- Main Content Panel -->
+    <main class="main-content">
+      
+      <!-- 1. DASHBOARD VIEW -->
+      <section id="dashboard-view">
+        <div class="content-header">
+          <div>
+            <h2 class="header-title">학습 대시보드</h2>
+            <p class="header-desc">교재의 20주 로드맵을 따라 공부하고 무한 복습 게임을 플레이해보세요.</p>
+          </div>
+        </div>
+        
+        <div class="weeks-grid" id="weeks-container">
+          <!-- Dynamically generated week cards will be inserted here -->
+        </div>
+      </section>
+      
+      <!-- 2. STUDY / EXPLANATION VIEW -->
+      <section id="study-view" style="display: none;">
+        <div class="content-header">
+          <div>
+            <h2 class="header-title" id="study-header-title">챕터 1 학습 설명</h2>
+            <p class="header-desc" id="study-header-desc">주차별 교재 본문 설명과 목표 페이지를 확인합니다.</p>
+          </div>
+          <div>
+            <button class="week-action-btn" onclick="switchView('dashboard')">대시보드로 가기</button>
+          </div>
+        </div>
+        
+        <div class="study-layout">
+          <!-- Text Explanation Content Panel -->
+          <div class="explanation-panel">
+            <div class="explanation-text" id="explanation-content">
+              <!-- Explanations extracted from PDF will be loaded here -->
+            </div>
+          </div>
+          
+          <!-- Side Controls Panel -->
+          <div class="study-side-panel">
+            <!-- Summary Info -->
+            <div class="side-card">
+              <h3 class="side-card-title">📖 학습 상세</h3>
+              <div style="margin-bottom: 1rem; font-size: 0.9rem;">
+                <p style="margin-bottom: 0.5rem;"><strong style="color: white;">범위:</strong> <span id="study-pages">PDF 22-30쪽</span></p>
+                <p><strong style="color: white;">학습 목표:</strong> <span id="study-goal">히브리어 특징 파악</span></p>
+              </div>
+              <button class="side-card-btn btn-success" id="btn-mark-complete" onclick="markActiveWeekComplete()">
+                ✓ 이 주차 학습 완료
+              </button>
+            </div>
+            
+            <!-- Quick Link to Game -->
+            <div class="side-card">
+              <h3 class="side-card-title">🎮 복습 게임 바로가기</h3>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+                오늘 배운 챕터 내용을 인터랙티브 게임으로 무한 반복해서 풀어보고 암기하세요!
+              </p>
+              <button class="side-card-btn btn-primary" onclick="launchGameForActiveWeek()">
+                지금 복습 게임 시작
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- 3. GAME ARENA VIEW -->
+      <section id="game-view" style="display: none;">
+        <div class="content-header">
+          <div>
+            <h2 class="header-title" id="game-header-title">복습 게임 아레나</h2>
+            <p class="header-desc" id="game-header-desc">다양한 게임 모드로 히브리어를 더 빠르게 암기해보세요.</p>
+          </div>
+          <div>
+            <button class="week-action-btn" onclick="backToGameMenu()" id="btn-back-to-games" style="display: none;">다른 게임 하기</button>
+          </div>
+        </div>
+        
+        <!-- Game Selection Screen -->
+        <div id="game-selection-screen">
+          <div class="game-modes-grid">
+            <!-- Mode 1: Card Matching -->
+            <div class="game-mode-card" onclick="startCardMatchingGame()">
+              <div class="game-mode-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+                </svg>
+              </div>
+              <h3 class="game-mode-title">카드 매칭 매치</h3>
+              <p class="game-mode-desc">히브리어 자음/모음 카드와 해당하는 한글 이름 카드의 짝을 찾아 맞춰보는 직관적인 카드 뒤집기 게임입니다.</p>
+              <button class="side-card-btn btn-primary">시작하기</button>
+            </div>
+            
+            <!-- Mode 2: Pronunciation Quiz -->
+            <div class="game-mode-card" onclick="startPronunciationQuiz()">
+              <div class="game-mode-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 class="game-mode-title">발음 & 음가 퀴즈</h3>
+              <p class="game-mode-desc">화면에 나타나는 히브리어 글자를 보고 올바른 발음이나 소릿값을 4지선다로 빠르게 맞추는 게임입니다.</p>
+              <button class="side-card-btn btn-primary">시작하기</button>
+            </div>
+            
+            <!-- Mode 3: Speed Vocab Game -->
+            <div class="game-mode-card" onclick="startSpeedVocabGame()">
+              <div class="game-mode-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 class="game-mode-title">스피드 단어 매칭</h3>
+              <p class="game-mode-desc">히브리어 기본 단어들과 알맞은 뜻을 빠르게 짝지어 매칭하고 점수를 쌓는 게임입니다.</p>
+              <button class="side-card-btn btn-primary">시작하기</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Game Play Arena -->
+        <div id="game-play-arena" style="display: none;">
+          <!-- Card Matching Game Board -->
+          <div id="card-matching-arena" class="game-arena" style="display: none;">
+            <div class="arena-header">
+              <h3 id="matching-game-title">히브리어 자음 카드 매칭</h3>
+              <div class="stats-group">
+                <div class="stat-item">
+                  <span class="stat-lbl">성공 짝</span>
+                  <span class="stat-val" id="matching-matches">0 / 8</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-lbl">시도 횟수</span>
+                  <span class="stat-val" id="matching-turns">0</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="cards-grid" id="matching-cards-container">
+              <!-- Cards will be generated dynamically here -->
+            </div>
+          </div>
+          
+          <!-- Pronunciation Quiz Box -->
+          <div id="pronunciation-quiz-arena" class="game-arena" style="display: none;">
+            <div class="arena-header">
+              <h3 id="quiz-game-title">발음/음가 사지선다</h3>
+              <div class="stats-group">
+                <div class="stat-item">
+                  <span class="stat-lbl">점수</span>
+                  <span class="stat-val" id="quiz-score">0</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-lbl">진행도</span>
+                  <span class="stat-val" id="quiz-progress">1 / 10</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="quiz-box">
+              <div class="quiz-question-card">
+                <div class="quiz-question-hebrew" id="quiz-question-character">א</div>
+                <p style="color: var(--text-secondary);" id="quiz-question-hint">이 자음의 이름은 무엇일까요?</p>
+              </div>
+              
+              <div class="quiz-choices" id="quiz-choices-container">
+                <!-- Choice buttons will be injected here -->
+              </div>
+            </div>
+          </div>
+          
+          <!-- Speed Vocab Board -->
+          <div id="speed-vocab-arena" class="game-arena" style="display: none;">
+            <div class="arena-header">
+              <h3>스피드 단어 짝맞추기</h3>
+              <div class="stats-group">
+                <div class="stat-item">
+                  <span class="stat-lbl">점수</span>
+                  <span class="stat-val" id="vocab-score">0</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-lbl">남은 시간</span>
+                  <span class="stat-val" id="vocab-timer" style="color: var(--color-warning);">30초</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Standard vocab match block (split column list matching) -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0;">
+              <div>
+                <h4 style="margin-bottom: 1rem; color: white;">히브리어 단어</h4>
+                <div id="vocab-left-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                  <!-- left vocab elements -->
+                </div>
+              </div>
+              <div>
+                <h4 style="margin-bottom: 1rem; color: white;">단어의 의미</h4>
+                <div id="vocab-right-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                  <!-- right vocab meanings -->
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </section>
+      
+      <!-- 4. GRAMMAR REFERENCE VIEW -->
+      <section id="reference-view" style="display: none;">
+        <div class="content-header">
+          <div>
+            <h2 class="header-title">히브리어 핵심 요약 도표</h2>
+            <p class="header-desc">공부하다가 기억이 나지 않는 문법 뼈대 도표들을 빠르게 참고하세요.</p>
+          </div>
+        </div>
+        
+        <div class="reference-container" id="reference-tables-container">
+          <!-- Dynamically generated paradigm tables will be injected here -->
+        </div>
+      </section>
+      
+    </main>
+  </div>
+  
+  <!-- Import Data files first, then Controller -->
+  <script src="data/hebrew_data.js" charset="UTF-8"></script>
+  <script src="data/chapters_text.js" charset="UTF-8"></script>
+  <script src="app.js" charset="UTF-8"></script>
+</body>
+</html>

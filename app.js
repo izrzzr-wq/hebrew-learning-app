@@ -294,9 +294,8 @@ function formatExplanationToHtml(text, weekNum) {
     if (!p) return '';
     if (p.startsWith('<h') || p.startsWith('<div')) return p;
     
-    // Highlight Hebrew letters/words dynamically in the body text
-    // Regex matches Hebrew alphabet, vowel points, presentation forms, and dotted circles
-    p = p.replace(/([\u0590-\u05FF\uFB1D-\uFB4F\u25cc\u2019\u201d]+)/g, '<span class="hebrew-word">$1</span>');
+    // Highlight Hebrew letters/words dynamically in the body text (Hebrew Unicode range only)
+    p = p.replace(/([\u0590-\u05FF\uFB1D-\uFB4F\u25cc]+)/g, '<span class="hebrew-word">$1</span>');
     
     return `<p>${p}</p>`;
   }).join('');

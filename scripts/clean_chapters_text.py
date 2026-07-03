@@ -717,6 +717,12 @@ def merge_broken_lines(text):
 # Apply corrections to each chapter
 print("Applying cleaning dictionary and regex to chapters text...")
 for ch_key, text in chapters_data.items():
+    # 0. Robust Regex replacements for garbled tables (where exact string matching fails)
+    text = re.sub(r'소릿값\s*한글표기\s*.*?호lι응품 k\s*>', '\n*(이곳은 히브리어 자음 목록 표가 있던 자리입니다. 자음의 형태와 소릿값은 상단 메뉴의 "핵심 요약 도표" 탭을 참고해 주세요.)*\n', text, flags=re.DOTALL)
+    text = re.sub(r'Anclent Hebr\..*?rash', '\n*(이곳은 고대 문자 변천사 도표가 있던 자리입니다. 이미지 손상으로 인하여 생략하며, 히브리어 알파벳의 형태는 앱의 학습 파트를 참고해 주세요.)*\n', text, flags=re.DOTALL)
+    text = re.sub(r':\s*웅\s*껴\s*\(카죠\s*\).*?f\s*\(차데\)', '\n*(이곳은 단어 끝에 올 때 모양이 달라지는 꼬리형 글자 표 자리입니다. 상세 모양은 상단 메뉴의 "핵심 요약 도표" 탭을 참고해 주세요.)*\n', text, flags=re.DOTALL)
+    text = re.sub(r'베트\s*b.*?b\s*g\s*d\s*k\s*p', '\n*(이곳은 베게드케페트 자음의 점 유무에 따른 발음 변화 표 자리입니다. 상세 내용은 상단 메뉴의 "핵심 요약 도표" 탭을 참고해 주세요.)*\n', text, flags=re.DOTALL)
+
     # 1. Apply large block replacements (for severely corrupted charts)
     for target, replacement in large_block_replacements:
         text = text.replace(target, replacement)
